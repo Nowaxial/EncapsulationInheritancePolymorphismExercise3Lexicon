@@ -14,12 +14,12 @@ namespace VehicleManager.Vehicles
 
         public override string Stats()
         {
-            return $"{base.Stats()}| Seats: {SeatsInVehicle}";
+            return base.Stats() + $"| Seats: {SeatsInVehicle}";
         }
 
         public override string StartEngine()
         {
-            return $" 🚗Car engine started with a key turn";
+            return $"Car engine started with a key turn";
         }
     }
 }

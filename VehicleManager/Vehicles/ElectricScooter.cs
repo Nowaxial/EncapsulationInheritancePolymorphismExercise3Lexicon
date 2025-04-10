@@ -19,7 +19,7 @@ namespace VehicleManager.Vehicles
 
         public override string Stats()
         {
-            return $"{base.Stats()}| Battery Range: ⚡{BatteryRange}km | Battery Percentage: 🔋{BatteryPercentage}% ";
+            return base.Stats() +  $"| Battery Range: ⚡{BatteryRange}km | Battery Percentage: 🔋{BatteryPercentage}% ";
             ;
         }
     }

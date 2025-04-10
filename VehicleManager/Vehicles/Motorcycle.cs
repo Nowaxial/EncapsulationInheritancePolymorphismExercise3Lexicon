@@ -12,7 +12,7 @@ public class Motorcycle : Vehicle
 
     public override string StartEngine()
     {
-        return "🏍️Motor cycle engine revved loudly";
+        return "Motor cycle engine revved loudly";
     }
 
     public override string Stats()

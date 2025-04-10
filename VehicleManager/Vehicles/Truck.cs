@@ -8,11 +8,11 @@ namespace VehicleManager.Vehicles
 {
     public class Truck : Vehicle
     {
-        public int CargoCapacity { get; set; }
+        public double CargoCapacity { get; set; }
 
         public override string StartEngine()
         {
-            return $"🛻Truck rumbled to life!";
+            return $"Truck rumbled to life!";
         }
 
         public override string Stats()
