@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace VehicleManager.Errors
 {
-    internal class BatteryChargeFailureError
+    public class BatteryChargeFailureError : SystemError
     {
+        public override string ErrorMessage()
+        {
+            return "Battery Failure: Charge the battery!";
+        }
     }
 }

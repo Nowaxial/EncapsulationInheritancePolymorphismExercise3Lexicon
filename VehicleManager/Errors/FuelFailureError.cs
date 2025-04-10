@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace VehicleManager.Errors
 {
-    internal class FuelFailureError
+    public class FuelFailureError : SystemError
     {
+        public override string ErrorMessage()
+        {
+            return "Fuel Error: Refuel!";
+        }
     }
 }

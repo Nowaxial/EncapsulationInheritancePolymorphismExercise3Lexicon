@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VehicleManager.Interfaces
 {
-    internal interface ICleanable
+    public interface ICleanable
     {
+        public void Clean();
     }
 }
