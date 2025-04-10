@@ -14,6 +14,8 @@ public abstract class Vehicle
     private int year;
     private double weight;
 
+    public abstract string StartEngine();
+
     public string Brand
     {
         get
@@ -73,5 +75,9 @@ public abstract class Vehicle
                 throw new ArgumentException("Weight must be a positive value.");
             weight = value;
         }
+    }
+    public virtual string Stats()
+    {
+        return $"Brand: {Brand} | Model: {Model} | Year: {Year} | Weight: {Weight}kg ";
     }
 }
