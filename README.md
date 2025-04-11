@@ -55,8 +55,6 @@ o TransmissionError: returnerar t.ex. "Växellådsproblem: Reparation krävs!"
 ```
 o Car
 o Truck
-```
-```
 o Motorcycle
 o ElectricScooter
 ```
