@@ -8,6 +8,7 @@ namespace VehicleManager.Errors
 {
     public class FuelFailureError : SystemError
     {
+        // Konstruktorn overridar basens konstruktor och lägger till specifika egenskaper
         public override string ErrorMessage()
         {
             return "Fuel Error: Refuel!";

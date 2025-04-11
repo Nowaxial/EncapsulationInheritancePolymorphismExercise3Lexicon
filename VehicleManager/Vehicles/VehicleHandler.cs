@@ -7,6 +7,7 @@ public class VehicleHandler
 {
     private readonly List<Vehicle> vehicles = new List<Vehicle>();
 
+    //Lägger till ett fordon
     public void AddVehicle()
     {
         try
@@ -27,6 +28,7 @@ public class VehicleHandler
         }
     }
 
+    //Väljer fordonstyp
     private static Vehicle SelectVehicleType()
     {
         while (true)
@@ -40,7 +42,7 @@ public class VehicleHandler
 
             string input = Console.ReadLine()!;
 
-            try
+            try //Try-catch block som fångar ogiltiga inmatningar
             {
                 return input switch
                 {
@@ -58,6 +60,7 @@ public class VehicleHandler
         }
     }
 
+    //Sätter gemensamma fordonsegenskaper
     private static void SetCommonVehicleProperties(Vehicle vehicle)
     {
         try
@@ -79,7 +82,7 @@ public class VehicleHandler
             throw new ArgumentException("Invalid input format.");
         }
     }
-
+    //Sätter fordonsspecifika egenskaper
     private static void SetVehicleSpecificProperties(Vehicle vehicle)
     {
         try
@@ -119,6 +122,7 @@ public class VehicleHandler
         }
     }
 
+    //Visar alla registrerade fordon
     public void ListVehicles()
     {
         if (!vehicles.Any())
@@ -129,12 +133,15 @@ public class VehicleHandler
 
         Console.WriteLine("\n=== Registered Vehicles ===");
 
+
+        // Visa fordon med detaljerad information på en rad och lägger till en siffror för varje fordon
         for (int i = 0; i < vehicles.Count; i++)
         {
             var vehicle = vehicles[i];
             Console.WriteLine($"\n{i + 1}. {vehicle.Stats()}");
             Console.WriteLine($"🔧 {vehicle.StartEngine()}");
 
+            // Om fordonet implementerar ICleanable, anropa Clean() metoden
             if (vehicle is ICleanable cleanable)
             {
                 Console.Write("🧼 Cleaning: ");
@@ -142,7 +149,7 @@ public class VehicleHandler
             }
         }
     }
-
+    //Uppdaterar ett fordon
     public void UpdateVehicle()
     {
         if (!vehicles.Any())
@@ -180,6 +187,7 @@ public class VehicleHandler
             Console.WriteLine(vehicleInfo);
         }
 
+        // Användarens val av fordon att uppdatera
         Console.Write("Enter the number of the vehicle you want to update: ");
         if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > vehicles.Count)
         {
@@ -194,5 +202,26 @@ public class VehicleHandler
         SetCommonVehicleProperties(selectedVehicle);
         SetVehicleSpecificProperties(selectedVehicle);
         Console.WriteLine("Vehicle updated successfully!");
+    }
+
+    //Visar systemfel
+    public static void DisplaySystemErrors()
+    {
+        int counter = 1;
+        var errors = new List<SystemError>
+{
+        new EngineFailureError(),
+        new BrakeFailureError(),
+        new TransmissionError(),
+        new BatteryChargeFailureError(),
+        new FuelFailureError()
+};
+
+        foreach (var error in errors)
+        {
+            
+            // Användning av polymorfism för att anropa ErrorMessage() metoden
+            Console.WriteLine($"{counter++}.⚠️ {error.ErrorMessage()}");
+        }
     }
 }
