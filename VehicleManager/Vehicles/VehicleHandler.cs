@@ -115,7 +115,7 @@ public class VehicleHandler
         }
         catch (FormatException)
         {
-            throw new ArgumentException("Invalid input format for vehicle-specific property.");
+            throw new ArgumentException("Invalid input format");
         }
     }
 
@@ -128,9 +128,11 @@ public class VehicleHandler
         }
 
         Console.WriteLine("\n=== Registered Vehicles ===");
-        foreach (var vehicle in vehicles)
+
+        for (int i = 0; i < vehicles.Count; i++)
         {
-            Console.WriteLine($"\n{vehicle.Stats()}");
+            var vehicle = vehicles[i];
+            Console.WriteLine($"\n{i + 1}. {vehicle.Stats()}");
             Console.WriteLine($"🔧 {vehicle.StartEngine()}");
 
             if (vehicle is ICleanable cleanable)
@@ -139,5 +141,58 @@ public class VehicleHandler
                 cleanable.Clean();
             }
         }
+    }
+
+    public void UpdateVehicle()
+    {
+        if (!vehicles.Any())
+        {
+            Console.WriteLine("No vehicles registered.");
+            return;
+        }
+        Console.WriteLine("\n=== Update Vehicle ===");
+
+        // Visa fordon med detaljerad information på en rad
+        for (int i = 0; i < vehicles.Count; i++)
+        {
+            Vehicle vehicle = vehicles[i];
+
+            string vehicleInfo = $"{i + 1}.  Type: {vehicle.GetType().Name} | Brand: {vehicle.Brand} | Model: {vehicle.Model} | Year: {vehicle.Year}";
+
+            // Lägg till fordonsspecifika egenskaper på samma rad
+            if (vehicle is Car car)
+            {
+                vehicleInfo += $" | Seats: {car.SeatsInVehicle}";
+            }
+            else if (vehicle is Motorcycle mc)
+            {
+                vehicleInfo += $" | Has Side Seat: {mc.HasSideSeat}";
+            }
+            else if (vehicle is Truck truck)
+            {
+                vehicleInfo += $" | CargoCapacity: {truck.CargoCapacity}kg";
+            }
+            else if (vehicle is ElectricScooter scooter)
+            {
+                vehicleInfo += $" | Battery Range: {scooter.BatteryRange}km | Battery Percentage: {scooter.BatteryPercentage}%";
+            }
+
+            Console.WriteLine(vehicleInfo);
+        }
+
+        Console.Write("Enter the number of the vehicle you want to update: ");
+        if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > vehicles.Count)
+        {
+            Console.WriteLine("Invalid choice.");
+            return;
+        }
+
+        // Konvertera från användarvänligt nummer (1-baserat) till index (0-baserat)
+        int index = choice - 1;
+        Vehicle selectedVehicle = vehicles[index];
+
+        SetCommonVehicleProperties(selectedVehicle);
+        SetVehicleSpecificProperties(selectedVehicle);
+        Console.WriteLine("Vehicle updated successfully!");
     }
 }
