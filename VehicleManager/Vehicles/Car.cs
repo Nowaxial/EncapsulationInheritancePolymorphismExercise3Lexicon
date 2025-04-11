@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VehicleManager.Interfaces;
-
+﻿using VehicleManager.Interfaces;
 
 namespace VehicleManager.Vehicles
 {
-    public class Car : Vehicle
+    public class Car : Vehicle, ICleanable
     {
         public int SeatsInVehicle { get; set; }
 
@@ -19,7 +13,12 @@ namespace VehicleManager.Vehicles
 
         public override string StartEngine()
         {
-            return $"Car engine started with a key turn";
+            return $"Car engine started with a key turn!";
+        }
+
+        public void Clean()
+        {
+            Console.WriteLine("Car washed and interior vacuumed.");
         }
     }
 }

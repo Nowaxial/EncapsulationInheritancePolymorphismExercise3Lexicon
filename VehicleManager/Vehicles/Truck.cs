@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using VehicleManager.Interfaces;
 
 namespace VehicleManager.Vehicles
 {
-    public class Truck : Vehicle
+    public class Truck : Vehicle, ICleanable
     {
         public double CargoCapacity { get; set; }
+
+        public void Clean()
+        {
+            Console.WriteLine("Truck exterior washed and cargo area cleaned.");
+        }
 
         public override string StartEngine()
         {

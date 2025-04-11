@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VehicleManager.Vehicles;
+﻿namespace VehicleManager.Vehicles;
 
 public abstract class Vehicle
 {
-    // Grundegenskaper för ALLA fordon
+    // Grundegenskaper för ALLA fordon och validering
     private string brand;
+
     private string model;
     private int year;
     private double weight;
@@ -76,6 +71,7 @@ public abstract class Vehicle
             weight = value;
         }
     }
+
     public virtual string Stats()
     {
         return $"Brand: {Brand} | Model: {Model} | Year: {Year} | Weight: {Weight}kg ";

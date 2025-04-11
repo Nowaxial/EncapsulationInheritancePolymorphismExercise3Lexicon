@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace VehicleManager.Vehicles;
+﻿namespace VehicleManager.Vehicles;
 
 public class Motorcycle : Vehicle
 {
